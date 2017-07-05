@@ -104,7 +104,7 @@ app.put('/posts/:id', (req, res) => {
 
   Blog
     // all key/value pairs in toUpdate will be updated -- that's what `$set` does
-    .findByIdAndUpdate(req.params.id, {$set: toUpdate})
+    .findByIdAndUpdate(req.params.id, {$set: toUpdate}, {new: true})
     .exec()
     .then(post => res.status(200).json(post.apiRep()))
     .catch(err => res.status(500).json({message: 'Internal server error'}));
